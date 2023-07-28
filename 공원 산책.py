@@ -15,21 +15,23 @@ def solution(park, routes):
         direction, steps = route.split(' ')
         steps = int(steps)
         
-        pos_x, pos_y = news[direction]
+        selected_at_dict_x, selected_at_dict_y = news[direction]
         
-        if not(x+(pos_x*steps) in range(0, h) and y+(pos_y*steps) in range(0, w)):
+        if not(
+            x+(selected_at_dict_x*steps) in range(0, h) 
+            and y+(selected_at_dict_y*steps) in range(0, w)):
             continue
         
         else:
             block = False
             for step in range(1, steps+1):
-                if park[y+(pos_y*step)][x+(pos_x*step)] == 'X':
+                if park[y+(selected_at_dict_y*step)][x+(selected_at_dict_x*step)] == 'X':
                     block = True
                     break
             
         if not block:
-            x += pos_x * steps
-            y += pos_y * steps
+            x += selected_at_dict_x * steps
+            y += selected_at_dict_y * steps
     
     return [y, x]
     
